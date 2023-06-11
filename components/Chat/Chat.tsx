@@ -30,7 +30,7 @@ const Chat = () => {
       );
     } else {
       return (
-        <Outgoing
+        <Incoming
           uid={message.uid}
           pfp={message.profilePicture}
           username={message.username}
@@ -38,7 +38,7 @@ const Chat = () => {
           key={index}
         >
           {message.message}
-        </Outgoing>
+        </Incoming>
       );
     }
   });
@@ -81,7 +81,13 @@ const Chat = () => {
           value={inputData}
           onChange={(e) => setInputData(e.target.value)}
         />
-        <Button primary={false} onClick={() => sendMessage(inputData)}>
+        <Button
+          primary={false}
+          onClick={() => {
+            sendMessage(inputData);
+            setInputData("");
+          }}
+        >
           <SendIcon />
         </Button>
       </div>
