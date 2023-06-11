@@ -18,12 +18,12 @@ const Incoming = ({ username, pfp, uid, children, timestamp }: PropTypes) => {
         <div className="flex flex-row gap-4">
           <Image
             className="h-5 w-auto"
-            src="https://api.dicebear.com/6.x/identicon/svg"
+            src={pfp}
             alt=""
+            height={20}
+            width={20}
           />
-          <div className="mb-2 text-sm flex justify-between ">
-            {"<"}username{">"}
-          </div>
+          <div className="mb-2 text-sm flex justify-between ">{username}</div>
         </div>
         <div className=" block text-sm text-right w-full">{result}</div>
       </div>

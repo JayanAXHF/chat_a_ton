@@ -38,15 +38,15 @@ const Signin = () => {
     if ((formData.email && formData.password) !== "") {
       try {
         await signInUser(formData.email, formData.password);
+        router.push("/");
       } catch (error) {
         alert(error);
       }
-      setFormData({
-        email: "",
-        password: "",
-      });
-      router.push("/");
     }
+    setFormData({
+      email: "",
+      password: "",
+    });
   };
 
   return (

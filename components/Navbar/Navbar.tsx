@@ -35,11 +35,11 @@ export function Navbar() {
     <AppProvider>
       <Disclosure
         as="nav"
-        className="dark:bg-[#0a1929]  border-b-2 dark:border-zinc-700 bg-white border-zinc-200"
+        className="dark:bg-main-dark-bg/70 backdrop-opacity-70  border-b-2 dark:border-zinc-700 bg-white/70 border-zinc-200"
       >
         {({ open }) => (
           <>
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 opacity-100">
               <div className="relative flex h-16 items-center justify-between">
                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden"></div>
                 <div className="flex flex-1 items-center  justify-start">

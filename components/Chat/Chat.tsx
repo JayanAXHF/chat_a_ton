@@ -49,14 +49,24 @@ const Chat = () => {
         Chat
       </div>
       <div className="px-10 py-5 overflow-auto h-auto sm:h-60 flex flex-col gap-y-4 lg:h-full overflow-x-hidden max-h-72 lg:max-h-full">
-        <Incoming uid="sad" pfp="sdff" username="sdf" timestamp={1686467790964}>
+        <Incoming
+          uid="sad"
+          pfp="https://api.dicebear.com/6.x/identicon/svg"
+          username="sdf"
+          timestamp={1686467790964}
+        >
           {" "}
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
           explicabo quaerat eveniet asperiores ipsam, ratione perspiciatis porro
           ullam odio maiores beatae, voluptatum autem qui laborum ex ducimus
           accusamus consectetur error.
         </Incoming>
-        <Outgoing uid="sad" pfp="sdff" username="sdf" timestamp={1686467790964}>
+        <Outgoing
+          uid="sad"
+          pfp="https://api.dicebear.com/6.x/identicon/svg"
+          username="sdf"
+          timestamp={1686467790964}
+        >
           {" "}
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
           explicabo quaerat eveniet asperiores ipsam, ratione perspiciatis porro
