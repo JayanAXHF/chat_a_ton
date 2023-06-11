@@ -1,21 +1,52 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { child, get, ref, set } from "firebase/database";
 import { db } from "../firebase";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  setPersistence,
+  browserLocalPersistence,
 } from "firebase/auth";
 import { app } from "../firebase";
+import { type } from "os";
 const AppContext = createContext<any>("");
+
+export interface Message {
+  message: string;
+  uid: string;
+  username: string;
+  profilePicture: string;
+  timestamp: number;
+}
 
 export const AppProvider = ({ children }: any) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userData, setUserData] = useState<any>();
-
+  const [messages, setMessages] = useState<Message[]>([]);
   const auth = getAuth(app);
+
+  const fetchMessages = async () => {
+    const snapshot = await get(child(ref(db), `messages`));
+
+    if (snapshot.exists()) {
+      const rawData = snapshot.val();
+      const arrayOfData = Object.values(rawData);
+      const keysOfData = Object.keys(rawData);
+      const formattedData: Message[] = arrayOfData.map(
+        (data: any, index: number) => {
+          return { timestamp: keysOfData[index], ...data };
+        }
+      );
+      setMessages(formattedData);
+    }
+  };
+
+  useEffect(() => {
+    fetchMessages();
+  });
 
   const signUpUser = async (
     email: string,
@@ -50,6 +81,8 @@ export const AppProvider = ({ children }: any) => {
     return user;
   };
   const signInUser = async (email: string, password: string) => {
+    await setPersistence(auth, browserLocalPersistence);
+
     const userCredentials = await signInWithEmailAndPassword(
       auth,
       email,
@@ -76,6 +109,31 @@ export const AppProvider = ({ children }: any) => {
     return user;
   };
 
+  const sendMessage = async (message: string) => {
+    const newMessage: Message = {
+      message,
+      uid: userData.uid,
+      username: userData.username,
+      profilePicture: userData.profilePicture,
+      timestamp: Date.now(),
+    };
+    try {
+      await set(ref(db, `messages/${Date.now().toString()}`), {
+        message,
+        uid: userData.uid,
+        username: userData.username,
+        profilePicture: userData.profilePicture,
+        timestamp: Date.now(),
+      });
+
+      setMessages((prevMessages: Message[]) => {
+        return [...prevMessages, newMessage];
+      });
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -85,6 +143,9 @@ export const AppProvider = ({ children }: any) => {
         signUpUser,
         signInUser,
         setUserData,
+        sendMessage,
+        messages,
+        setMessages,
       }}
     >
       {children}

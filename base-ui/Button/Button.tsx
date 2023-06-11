@@ -1,19 +1,21 @@
 import "./Button.css";
 interface ButtonProps {
-  text: string;
   primary: boolean;
   bgColor?: string;
   color?: string;
   size?: "small" | "medium" | "large";
-  onClick?: () => void;
+  onClick?: () => any;
   styles?: string;
+  children?: React.ReactNode;
 }
 
 const Button = ({
   primary,
   size = "medium",
   styles = "",
-  text,
+
+  children,
+  onClick,
   ...props
 }: ButtonProps) => {
   const secondaryStyles =
@@ -26,8 +28,9 @@ const Button = ({
       className={`${size} ${
         primary ? primaryStyles : secondaryStyles
       } ${styles} `}
+      onClick={onClick}
     >
-      {text}
+      {children}
     </button>
   );
 };

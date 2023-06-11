@@ -22,7 +22,6 @@ function classNames(...classes: string[]) {
 export function Navbar() {
   const { loggedIn, userData, setLoggedIn, setUserData } = useAppContext();
   const pathname = usePathname();
-  console.log(`JSC ~ file: Navbar.tsx:21 ~ Navbar ~ pathname:`, pathname);
 
   const auth = getAuth(app);
 

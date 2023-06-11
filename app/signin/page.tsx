@@ -52,7 +52,7 @@ const Signin = () => {
   return (
     <div className="grid justify-center items-center h-screen  md:overflow-y-hidden shadow-lg">
       <section className="overflow-y-none h-4/5 ">
-        <div className="lg:grid lg:min-h-screen lg:grid-cols-12 h-4/5">
+        <div className="lg:grid lg:min-h-screen lg:grid-cols-12 md:h-4/5">
           <section className=" flex  items-end  lg:col-span-5 lg:h-4/5 xl:col-span-6 dark:bg-main-dark-bg bg-white">
             <div className="hidden lg:relative lg:block lg:p-12">
               <a className="block text-white" href="/">
