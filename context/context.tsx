@@ -11,7 +11,7 @@ import {
   browserLocalPersistence,
 } from "firebase/auth";
 import { app } from "../firebase";
-import { type } from "os";
+
 const AppContext = createContext<any>("");
 
 export interface Message {
@@ -26,6 +26,7 @@ export const AppProvider = ({ children }: any) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userData, setUserData] = useState<any>();
   const [messages, setMessages] = useState<Message[]>([]);
+  const [openHistoryModal, setOpenHistoryModal] = useState(false);
   const auth = getAuth(app);
 
   const fetchMessages = async () => {
@@ -146,6 +147,8 @@ export const AppProvider = ({ children }: any) => {
         sendMessage,
         messages,
         setMessages,
+        openHistoryModal,
+        setOpenHistoryModal,
       }}
     >
       {children}

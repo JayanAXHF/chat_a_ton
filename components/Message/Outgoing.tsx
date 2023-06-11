@@ -15,7 +15,7 @@ const Outgoing = ({ children, timestamp }: PropTypes) => {
   return (
     <div>
       <div>
-        <div className="rounded-2xl rounded-br-none border  p-5  col-span-12 md:max-w-md max-w-sm bg-[#93C5FD] text-black">
+        <div className="border-transparent rounded-2xl rounded-br-none border  p-5  col-span-12 md:max-w-md max-w-sm bg-[#93C5FD] text-black">
           {children}
         </div>
       </div>
