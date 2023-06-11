@@ -82,28 +82,29 @@ export const AppProvider = ({ children }: any) => {
     return user;
   };
   const signInUser = async (email: string, password: string) => {
-    await setPersistence(auth, browserLocalPersistence);
-
     const userCredentials = await signInWithEmailAndPassword(
       auth,
       email,
       password
     );
-    get(child(ref(db), `users/${userCredentials.user.uid}`))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log(snapshot.val());
-          setUserData({
-            ...snapshot.val(),
-            uid: userCredentials.user.uid,
-          });
-        } else {
-          console.log("No data available");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    console.log(userCredentials.user.uid);
+
+    const snapshot = await get(
+      child(ref(db), `users/${userCredentials.user.uid}`)
+    );
+    try {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        setUserData({
+          ...snapshot.val(),
+          uid: userCredentials.user.uid,
+        });
+      } else {
+        console.log("No data available");
+      }
+    } catch (error) {
+      console.error(error);
+    }
 
     const user = { userCredentials };
     setLoggedIn(true);
