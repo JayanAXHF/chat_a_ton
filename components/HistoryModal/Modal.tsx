@@ -72,7 +72,7 @@ export default function HistoryModal() {
                   >
                     Message History
                   </Dialog.Title>
-                  <div className="max-h-[48rem] flex flex-col gap-5">
+                  <div className="max-h-[48rem] flex flex-col gap-5 overflow-auto">
                     {messageComponent.reverse()}
                   </div>
                 </div>
