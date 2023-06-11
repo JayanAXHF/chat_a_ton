@@ -16,7 +16,7 @@ const Incoming = ({ username, pfp, uid, children, timestamp }: PropTypes) => {
     <div>
       <div className="flex flex-row gap-4 justify-between">
         <div className="flex flex-row gap-4">
-          <img
+          <Image
             className="h-5 w-auto"
             src="https://api.dicebear.com/6.x/identicon/svg"
             alt=""

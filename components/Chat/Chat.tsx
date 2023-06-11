@@ -15,7 +15,7 @@ const Chat = () => {
 
   const [inputData, setInputData] = React.useState("");
 
-  const messageComponent = messages.map((message: Message) => {
+  const messageComponent = messages.map((message: Message, index: number) => {
     if (message.uid === userData.uid) {
       return (
         <Outgoing
@@ -23,6 +23,7 @@ const Chat = () => {
           pfp={message.profilePicture}
           username={message.username}
           timestamp={message.timestamp}
+          key={index}
         >
           {message.message}
         </Outgoing>
@@ -34,6 +35,7 @@ const Chat = () => {
           pfp={message.profilePicture}
           username={message.username}
           timestamp={message.timestamp}
+          key={index}
         >
           {message.message}
         </Outgoing>
